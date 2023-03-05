@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "sorcial network",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server",
     "server": "nodemon server"
@@ -12,9 +13,9 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.9",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
-    "gravator": "^1.0.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.0",
     "request": "^2.88.2"
