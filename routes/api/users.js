@@ -3,6 +3,8 @@ import { check, validationResult } from "express-validator";
 import bcrypt from 'bcryptjs'
 import User from "../../models/User.js";
 import md5 from 'md5'
+import Jwt from "jsonwebtoken";
+
 
 
 const router = express.Router();
@@ -45,7 +47,20 @@ router.post("/", [
         await user.save()
 
         // Return jsonwebtoken
-        res.send("User registerd")
+        const playload = {
+            user: {
+                id: user.id
+            }
+        }
+
+        Jwt.sign(
+            playload,
+            process.env.jwt_Secrect,
+            { expiresIn: 360000 },
+            (err, token) => {
+                if (err) throw err;
+                res.json({ token })
+            })
 
     } catch (err) {
         console.error(err.message);
@@ -55,4 +70,3 @@ router.post("/", [
 });
 
 export default router;
-
